@@ -178,6 +178,7 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 5. **Multi-Modal Agent RL** — GUI, vision, and audio rewards for multi-modal agents (rLLM VLM, Agent-R1)
 6. **Safety & Controllability** — Reward hacking prevention, constitutional RL constraints
 7. **Evaluation Standardization** — Unified Agent RL benchmarks combining online tasks + offline metrics
+   - [EvoClaw](https://arxiv.org/abs/2603.13428) — A benchmark evaluating AI agents on continuous software evolution via Milestone DAGs reconstructed from commit logs. Tests agents' ability to sustain system integrity and limit error accumulation over long-term evolution. Finds that frontier model performance drops from >80% on isolated tasks to ≤38% in continuous settings.
 
 ---
 
@@ -187,6 +188,7 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 - [OpenClaw-RL: Train any agent simply by talking](https://arxiv.org/abs/2603.10165)
 - [Agent-R1: Training Powerful LLM Agents with End-to-End RL](https://arxiv.org/abs/2511.14460)
 - [PRIME: Process Reinforcement through Implicit Rewards](https://arxiv.org/abs/2502.01456)
+- [EvoClaw: Evaluating AI Agents on Continuous Software Evolution](https://arxiv.org/abs/2603.13428)
 - [SDFT: Self-Distilled Fine-Tuning](https://arxiv.org/abs/2601.19897)
 - [SDPO: Self-Distilled Policy Optimization](https://arxiv.org/abs/2601.20802)
 - [HybridFlow: A Flexible and Efficient RLHF Framework](https://arxiv.org/abs/2409.19256)
