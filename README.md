@@ -76,6 +76,16 @@ General-purpose frameworks for training LLM Agents with reinforcement learning.
 - 🏫 UC Berkeley Sky Computing Lab
 - 📄 [Blog](https://rllm-project.com/blog)
 
+### [ProRL Agent](https://github.com/NVIDIA-NeMo/ProRL-Agent-Server) ![GitHub stars](https://img.shields.io/github/stars/NVIDIA-NeMo/ProRL-Agent-Server?style=social)
+Python | Rollout-as-a-Service infrastructure for RL training of multi-turn LLM agents (NVIDIA NeMo Gym).
+
+- **Rollout-as-a-Service**: decouples rollout orchestration from training loop via API service
+- Standardized and extensible sandbox environments for diverse agentic tasks
+- Validated on software engineering, math, STEM, and coding tasks
+- Rootless HPC deployment support
+- 🏢 NVIDIA NeMo Gym
+- 📄 [Paper](https://arxiv.org/abs/2603.18815)
+
 ### [MiniMax Forge](https://www.minimax.io/news/forge-scalable-agent-rl-framework-and-algorithm)
 Scalable Agent RL framework and algorithm from MiniMax.
 
@@ -306,6 +316,7 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 - [Seer: Online Context Learning for Fast Synchronous LLM RL](https://arxiv.org/abs/2511.14617)
 - [AREAL-DTA: Dynamic Tree Attention for Efficient RL](https://arxiv.org/abs/2602.00482)
 - [RLAnything: Closed-loop RL Optimization](https://arxiv.org/abs/2602.02488)
+- [ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents](https://arxiv.org/abs/2603.18815)
 - [DemyAgent: Agentic RL with Deliberative Reasoning](https://arxiv.org/abs/2510.11701)
 
 ### Awesome Lists
