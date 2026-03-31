@@ -331,6 +331,7 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 
 ### Awesome Lists
 - [Awesome-Agent-RL](https://github.com/0russwest0/Awesome-Agent-RL) — Papers & resources on Agent RL
+- [Awesome-Agent-Skill-Evolution](https://github.com/pILLOW-1/Awesome-Agent-Skill-Evolution) — Papers & resources on Agent Skill Evolution
 
 ### Platforms & Tools
 - [OpenClaw](https://openclaw.ai) — Personal AI assistant platform
