@@ -302,6 +302,9 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 5. **Multi-Modal Agent RL** — GUI, vision, and audio rewards for multi-modal agents (rLLM VLM, Agent-R1)
 6. **Safety & Controllability** — Reward hacking prevention, constitutional RL constraints
 7. **Evaluation Standardization** — Unified Agent RL benchmarks combining online tasks + offline metrics
+   - [ClawArena](https://github.com/aiming-lab/ClawArena) — Benchmarking AI agents in evolving information environments with 64 multi-domain scenarios and multi-session context evaluation
+   - [ClawBench](https://github.com/reacher-z/ClawBench) — Web agent benchmark in real browser environments with multi-modal recording (DOM events, HTTP requests, screenshots, MP4 video) and isolated Docker containers
+   - [Claw-Eval](https://github.com/claw-eval/claw-eval) — Transparent benchmark with 300 human-verified tasks, 2,159 rubrics across 9 categories, evaluating agents on Completion, Safety, and Robustness with Pass^3 methodology
    - [EvoClaw](https://arxiv.org/abs/2603.13428) — A benchmark evaluating AI agents on continuous software evolution via Milestone DAGs reconstructed from commit logs. Tests agents' ability to sustain system integrity and limit error accumulation over long-term evolution. Finds that frontier model performance drops from >80% on isolated tasks to ≤38% in continuous settings.
 8. **KV Cache Management & Sharing** — Cross-request prefix sharing, global cache pools, and program-aware scheduling (ThunderAgent, ForgeRL, Seer)
 9. **Reasoning Collapse in Agent RL** — Diagnosing and mitigating template collapse during multi-turn agent training (RAGEN V2)
