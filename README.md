@@ -1,5 +1,7 @@
 # 🦞 Awesome-OpenClaw-RL
 
+![Awesome OpenClaw RL — Agent Infrastructure, Agentic RL, and RL Training drive Personal Agent Learning](assets/awesome-openclaw-rl-banner-v3.png)
+
 > A curated list of open-source projects at the intersection of **Agent Infrastructure** and **Reinforcement Learning** — focused on training and improving LLM Agents via RL, especially through natural conversation feedback and online continual learning.
 
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
@@ -8,7 +10,7 @@
 
 ## 📖 Table of Contents
 
-- [Core Projects (OpenClaw Ecosystem)](#-core-projects---openclaw-ecosystem)
+- [Core Projects (Personal Agent Learning Ecosystem)](#-core-projects---personal-agent-learning-ecosystem)
 - [Agentic RL Frameworks](#-agentic-rl-frameworks)
 - [RL Training Infrastructure](#-rl-training-infrastructure)
 - [Agent Infrastructure](#-agent-infrastructure)
@@ -18,9 +20,9 @@
 
 ---
 
-## 🎯 Core Projects — OpenClaw Ecosystem
+## 🎯 Core Projects — Personal Agent Learning Ecosystem
 
-Projects directly built on or derived from [OpenClaw](https://github.com/openclaw/openclaw) that bring RL training to personal AI assistants.
+Projects at the center of personal-agent learning: systems that enable assistants to learn, adapt, or improve continuously through RL, interaction traces, skills, memory, or online feedback. This includes both [OpenClaw](https://github.com/openclaw/openclaw)-based projects and closely related independent systems.
 
 ### [OpenClaw-RL](https://github.com/Gen-Verse/OpenClaw-RL) ![GitHub stars](https://img.shields.io/github/stars/Gen-Verse/OpenClaw-RL?style=social)
 `TypeScript` | Train a personalized agent simply by talking to it.
@@ -30,6 +32,7 @@ Projects directly built on or derived from [OpenClaw](https://github.com/opencla
 - General agent support: terminal, GUI, SWE, tool-call scenarios
 - LoRA training + local GPU / cloud ([Tinker](https://thinkingmachines.ai/tinker/)) deployment
 - Zero manual labeling — automatically organizes multi-turn interactions into training trajectories
+- Recent recipes add Qwen3.5 support and multi-user feedback collection
 - 📄 [Technical Report](https://arxiv.org/abs/2603.10165) — #1 on [HuggingFace Daily Papers](https://huggingface.co/papers/2603.10165)
 
 ### [MetaClaw](https://github.com/aiming-lab/MetaClaw) ![GitHub stars](https://img.shields.io/github/stars/aiming-lab/MetaClaw?style=social)
@@ -42,20 +45,106 @@ Projects directly built on or derived from [OpenClaw](https://github.com/opencla
 - Three modes: `skills_only` / `rl` / `madmax` (default: RL + scheduler)
 
 ### [Claw-R1](https://github.com/AgentR1/Claw-R1) ![GitHub stars](https://img.shields.io/github/stars/AgentR1/Claw-R1?style=social)
-`Python` | Empowering OpenClaw with Advanced Agentic RL.
+`Python` | Step-level data middleware and lifecycle management for Agentic RL.
 
 - **Middleware Layer** (Gateway Server + DataPool) decouples Agent side from Training side
 - Three modes: white-box offline, black-box offline, black-box online service
 - Zero-code intrusion: black-box agents (LangChain, AutoGen, CrewAI) just point `base_url` to Gateway
-- Async training & rollout decoupling
+- Dashboard for collection monitoring, step-level representation, curation, prefix-tree optimization, and training consumption
+- Human-feedback pipeline and dataset versioning on the roadmap
 - 🏫 USTC Cognitive Intelligence State Key Lab
-- 📄 [Documentation](https://agentr1.github.io/)
+- 📄 [Technical Report](https://arxiv.org/abs/2606.09138) | [Documentation](https://agentr1.github.io/Claw-R1/)
+
+### [OpenJarvis](https://github.com/open-jarvis/OpenJarvis) ![GitHub stars](https://img.shields.io/github/stars/open-jarvis/OpenJarvis?style=social)
+`Python` | An open, modular, local-first personal AI stack that learns from its own interactions.
+
+- Closed learning loop turns local interaction traces into model, prompt, agent-logic, and configuration improvements
+- Supports weight optimization with **SFT** and **GRPO**
+- Supports prompt and agent optimization with **DSPy**, **GEPA**, and **ACE**
+- Modular stack spanning inference, agents, tools, memory, learning, and evaluation
+- Local-first execution keeps user data and learning traces under user control
+- 🏫 Stanford University
+- 📄 [Paper](https://arxiv.org/abs/2605.17172) | [Project Website](https://openjarvis.stanford.edu/)
+
+### [ClawGym](https://github.com/ClawGym/ClawGym-Agents) ![GitHub stars](https://img.shields.io/github/stars/ClawGym/ClawGym-Agents?style=social)
+`Python` | A full-lifecycle data, training, and evaluation stack for Claw-style personal agents.
+
+- 13.5K tasks and 24.5K agent trajectories spanning realistic personal-assistant workflows
+- End-to-end recipes for supervised fine-tuning and reinforcement learning
+- Released datasets, model checkpoints, training code, and the ClawGym-Bench evaluation suite
+- **ClawGym II** extends black-box RL to deployed harnesses including OpenClaw and Claude Code
+- Mix-harness training improves cross-harness generalization
+- 📄 [ClawGym Paper](https://arxiv.org/abs/2604.26904) | [ClawGym II](https://arxiv.org/abs/2608.16798)
 
 ---
 
 ## 🤖 Agentic RL Frameworks
 
 General-purpose frameworks for training LLM Agents with reinforcement learning.
+
+### [Dressage](https://github.com/Accio-Lab/Dressage) ![GitHub stars](https://img.shields.io/github/stars/Accio-Lab/Dressage?style=social)
+`Python` | Train real-world agents on their native harnesses with black-box or white-box RL.
+
+- Supports OpenClaw, Claude Code, Codex, OpenCode, and other existing agent harnesses
+- Proxy-based black-box mode requires no modification to the agent implementation
+- White-box mode enables token-level optimization and deeper trainer integration
+- Built on [Slime](https://github.com/THUDM/slime) for scalable asynchronous training
+- OpenClaw recipe improves strict Claw-Eval Pass^3 from 41.4 to 55.4
+
+### [OpenForgeRL](https://github.com/MSR-Orchard/OpenForge-RL) ![GitHub stars](https://img.shields.io/github/stars/MSR-Orchard/OpenForge-RL?style=social)
+`Python` | Harness-native RL for agents running in OpenClaw, Codex, ZeroClaw, and other real systems.
+
+- Recording proxy converts native harness interactions into trainable trajectories
+- Container and Kubernetes execution for isolated, reproducible agent environments
+- Training integration with [veRL](https://github.com/volcengine/verl)
+- Separates harness execution, trajectory collection, reward evaluation, and policy updates
+- 🏫 Columbia University, Dartmouth College, and Microsoft Research
+- 📄 [Paper](https://arxiv.org/abs/2607.21557)
+
+### [Agent Lightning](https://github.com/microsoft/agent-lightning) ![GitHub stars](https://img.shields.io/github/stars/microsoft/agent-lightning?style=social)
+`Python` | Train agents built with almost any framework without rewriting their logic.
+
+- Lightweight proxy and tracing layer separates agent execution from RL optimization
+- Supports real coding-agent harnesses and long-horizon, multi-step trajectories
+- Credit assignment decomposes complex executions into trainable transitions
+- Agent Lightning v1.0 provides a compact, fully refactored training stack
+- Qwen3.5-9B improves from 41.8 to 56.4 on SWE-bench Verified in the released coding-agent pipeline
+- 📄 [Paper](https://arxiv.org/abs/2608.17528)
+
+### [Uni-Agent](https://github.com/verl-project/uni-agent) ![GitHub stars](https://img.shields.io/github/stars/verl-project/uni-agent?style=social)
+`Python` | veRL's framework for scalable long-horizon RL on arbitrary agent harnesses.
+
+- Harness-agnostic integration for Claude Code, Mini-SWE-Agent, and custom agents
+- Fully asynchronous GRPO/GSPO training with partial-rollout support
+- Scales to 1,000+ concurrent stateful agent sessions
+- Decouples rollout workers, environments, inference, and training services
+- Maintained in the veRL ecosystem
+
+### [AgentJet](https://github.com/modelscope/AgentJet) ![GitHub stars](https://img.shields.io/github/stars/modelscope/AgentJet?style=social)
+`Python` | Distributed reinforcement learning for heterogeneous swarms of agents.
+
+- Jointly trains multiple agents with different roles, models, tools, and execution environments
+- Native support for decentralized and hierarchical multi-agent workflows
+- Includes an OpenClaw training recipe
+- Distributed rollout and training across heterogeneous compute resources
+- 📄 [Paper](https://arxiv.org/abs/2606.04484)
+
+### [ART](https://github.com/OpenPipe/ART) ![GitHub stars](https://img.shields.io/github/stars/OpenPipe/ART?style=social)
+`Python` | A practical Agent Reinforcement Trainer for multi-step agents.
+
+- GRPO training over real agent trajectories with custom tools and environments
+- Works with existing agent code through a lightweight rollout interface
+- Supports local and distributed training backends
+- Built-in trajectory inspection, reward tracking, and experiment workflows
+
+### [SkillRL](https://github.com/aiming-lab/SkillRL) ![GitHub stars](https://img.shields.io/github/stars/aiming-lab/SkillRL?style=social)
+`Python` | Co-evolve an agent policy and its reusable skill library through reinforcement learning.
+
+- Alternates policy optimization with automatic skill discovery and refinement
+- Turns successful trajectories into reusable procedural knowledge
+- Skill retrieval improves exploration and long-horizon task solving
+- Connects weight learning with explicit, inspectable agent capabilities
+- 📄 [Paper](https://arxiv.org/abs/2602.08234)
 
 ### [Agent-R1](https://github.com/AgentR1/Agent-R1) ![GitHub stars](https://img.shields.io/github/stars/AgentR1/Agent-R1?style=social)
 `Python` | Training Powerful LLM Agents with End-to-End RL.
@@ -76,15 +165,16 @@ General-purpose frameworks for training LLM Agents with reinforcement learning.
 - 🏫 UC Berkeley Sky Computing Lab
 - 📄 [Blog](https://rllm-project.com/blog)
 
-### [ProRL Agent](https://github.com/NVIDIA-NeMo/ProRL-Agent-Server) ![GitHub stars](https://img.shields.io/github/stars/NVIDIA-NeMo/ProRL-Agent-Server?style=social)
-Python | Rollout-as-a-Service infrastructure for RL training of multi-turn LLM agents (NVIDIA NeMo Gym).
+### [Polar (formerly ProRL Agent)](https://github.com/NVIDIA-NeMo/ProRL-Agent-Server) ![GitHub stars](https://img.shields.io/github/stars/NVIDIA-NeMo/ProRL-Agent-Server?style=social)
+`Python` | Agentic RL on any real-world harness at scale (NVIDIA NeMo).
 
-- **Rollout-as-a-Service**: decouples rollout orchestration from training loop via API service
-- Standardized and extensible sandbox environments for diverse agentic tasks
-- Validated on software engineering, math, STEM, and coding tasks
-- Rootless HPC deployment support
+- Evolved from ProRL Agent's **Rollout-as-a-Service** architecture into a harness-neutral framework
+- Low-intrusion integration for diverse training stacks and native agent harnesses
+- Built-in evaluators, sandboxed execution, and distributed rollout services
+- Slime bridge and end-to-end SWE-Gym GRPO example
+- Rootless HPC and Apptainer deployment support
 - 🏢 NVIDIA NeMo Gym
-- 📄 [Paper](https://arxiv.org/abs/2603.18815)
+- 📄 [Polar Paper](https://arxiv.org/abs/2605.24220) | [ProRL Agent Paper](https://arxiv.org/abs/2603.18815)
 
 ### [MiniMax Forge](https://www.minimax.io/news/forge-scalable-agent-rl-framework-and-algorithm)
 Scalable Agent RL framework and algorithm from MiniMax.
@@ -179,6 +269,30 @@ Foundational RL training libraries that power the Agentic RL ecosystem.
 - PPO, DPO, RLOO, GRPO
 - Largest community, most comprehensive documentation
 
+### [OpenEnv](https://github.com/huggingface/OpenEnv) ![GitHub stars](https://img.shields.io/github/stars/huggingface/OpenEnv?style=social)
+`Python` | A standard interface for building, sharing, and running agentic RL environments.
+
+- Separates environment implementations from agents and training frameworks
+- Supports local, containerized, and remote environment execution
+- Typed actions, observations, state, and reward interfaces
+- Community-governed across Hugging Face, Meta, PyTorch, and the broader RL ecosystem
+
+### [prime-rl](https://github.com/PrimeIntellect-ai/prime-rl) ![GitHub stars](https://img.shields.io/github/stars/PrimeIntellect-ai/prime-rl?style=social)
+`Python` | Asynchronous reinforcement learning at scale for language models and agents.
+
+- Decoupled inference and training for high-throughput asynchronous RL
+- Integrates [Verifiers](https://github.com/PrimeIntellect-ai/verifiers) environments and reward functions
+- Supports FSDP2, vLLM, MoE and vision-language models
+- Deployment recipes for local clusters, Slurm, and Kubernetes
+
+### [Verifiers](https://github.com/PrimeIntellect-ai/verifiers) ![GitHub stars](https://img.shields.io/github/stars/PrimeIntellect-ai/verifiers?style=social)
+`Python` | Modular environments, evaluators, and rewards for RL and agent evaluation.
+
+- Composable support for single-turn, multi-turn, tool-use, and stateful agent tasks
+- Environments for MCP, browsers, command-line agents, coding, math, and reasoning
+- Shared interface for evaluation, dataset generation, and RL training
+- Integrates directly with prime-rl and can be used from other training stacks
+
 ### [PRIME](https://github.com/PRIME-RL/PRIME) ![GitHub stars](https://img.shields.io/github/stars/PRIME-RL/PRIME?style=social)
 `Python` | Scalable RL with implicit process rewards.
 
@@ -194,12 +308,14 @@ Foundational RL training libraries that power the Agentic RL ecosystem.
 - Efficient rollout generation with SGLang's optimized serving backend
 - 🏫 Tsinghua University (THUDM)
 
-### [AReaL](https://github.com/inclusionAI/AReaL) ![GitHub stars](https://img.shields.io/github/stars/inclusionAI/AReaL?style=social)
-`Python` | Efficient RL training with Dynamic Tree Attention (Ant Group).
+### [AReaL](https://github.com/AReaL-Project/AReaL) ![GitHub stars](https://img.shields.io/github/stars/AReaL-Project/AReaL?style=social)
+`Python` | A fully asynchronous, modular RL system for reasoning and agentic models.
 
+- AReaL 2.0 uses a microservice architecture that decouples generation, environments, rewards, and training
+- Agent service with ready-to-run OpenClaw and Hermes examples
+- Supports large-scale asynchronous online RL and long-horizon agent rollouts
 - **AREAL-DTA**: DFS-based prefix tree traversal for rollout KV cache sharing during training
 - Materializes only a single root-to-leaf path at a time — avoids full attention mask
-- Load-balanced distributed batching across multiple GPUs
 - Up to 8.31x training throughput improvement
 - 📄 [Paper](https://arxiv.org/abs/2602.00482)
 
@@ -255,7 +371,19 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 `TypeScript` | Personal AI assistant platform.
 - Single-user, local-first, 20+ channels (WhatsApp/Telegram/Discord/Feishu...)
 - Skill system, persistent memory, sub-agent orchestration
+- Built-in **Self-learning** converts corrections and successful work into reusable skills through the governed Skill Workshop lifecycle
+- Autonomous learning supports `off`, `propose`, and scanner-gated `auto` modes with rollback metadata
 - The primary target platform for OpenClaw-RL and MetaClaw
+- 📖 [Self-learning Documentation](https://github.com/openclaw/openclaw/blob/main/docs/tools/self-learning.md)
+
+### [KnowAct-GUIClaw](https://github.com/HITsz-TMG/KnowAct) ![GitHub stars](https://img.shields.io/github/stars/HITsz-TMG/KnowAct?style=social)
+`Python` | A self-evolving GUI agent that can be invoked from OpenClaw and Hermes.
+
+- Learns reusable GUI knowledge from task execution and experience
+- Evolves both memory and executable skills over time
+- Connects general personal-agent harnesses to desktop and graphical applications
+- Separates high-level planning from grounded GUI actions
+- 📄 [Paper](https://arxiv.org/abs/2607.12625)
 
 ### [EdgeClaw](https://github.com/OpenBMB/EdgeClaw) ![GitHub stars](https://img.shields.io/github/stars/OpenBMB/EdgeClaw?style=social)
 `TypeScript` | Edge-Cloud Collaborative AI Agent — sensitive data stays local, cloud handles reasoning.
@@ -276,39 +404,57 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 | **OpenClaw-RL** | ![GitHub stars](https://img.shields.io/github/stars/Gen-Verse/OpenClaw-RL?style=flat) | TS | Conversation → RL for OpenClaw | Fully async, zero labeling, 3 learning paradigms |
 | **MetaClaw** | ![GitHub stars](https://img.shields.io/github/stars/aiming-lab/MetaClaw?style=flat) | Python | Meta-learning + continual evolution | No GPU needed, smart scheduler, skill injection |
 | **Claw-R1** | ![GitHub stars](https://img.shields.io/github/stars/AgentR1/Claw-R1?style=flat) | Python | RL middleware for general agents | White-box/black-box decoupling, zero intrusion |
+| **OpenJarvis** | ![GitHub stars](https://img.shields.io/github/stars/open-jarvis/OpenJarvis?style=flat) | Python | Local-first personal-agent learning | Optimizes weights, prompts, agent logic, and configuration |
+| **ClawGym** | ![GitHub stars](https://img.shields.io/github/stars/ClawGym/ClawGym-Agents?style=flat) | Python | Claw-agent data, training, and evaluation | 13.5K tasks, 24.5K trajectories, SFT + RL |
+| **Dressage** | ![GitHub stars](https://img.shields.io/github/stars/Accio-Lab/Dressage?style=flat) | Python | RL on native agent harnesses | Black-box/white-box training, OpenClaw recipe |
+| **OpenForgeRL** | ![GitHub stars](https://img.shields.io/github/stars/MSR-Orchard/OpenForge-RL?style=flat) | Python | Harness-native agent RL | Recording proxy, containers/K8s, veRL integration |
+| **Agent Lightning** | ![GitHub stars](https://img.shields.io/github/stars/microsoft/agent-lightning?style=flat) | Python | Framework-agnostic agent training | Low-intrusion proxy and trajectory credit assignment |
+| **Uni-Agent** | ![GitHub stars](https://img.shields.io/github/stars/verl-project/uni-agent?style=flat) | Python | Long-horizon RL on arbitrary harnesses | 1,000+ stateful sessions, async GRPO/GSPO |
+| **AgentJet** | ![GitHub stars](https://img.shields.io/github/stars/modelscope/AgentJet?style=flat) | Python | Heterogeneous swarm-agent RL | Distributed multi-agent training, OpenClaw recipe |
+| **ART** | ![GitHub stars](https://img.shields.io/github/stars/OpenPipe/ART?style=flat) | Python | Practical multi-step agent RL | Lightweight GRPO integration with existing agents |
+| **SkillRL** | ![GitHub stars](https://img.shields.io/github/stars/aiming-lab/SkillRL?style=flat) | Python | Policy and skill co-evolution | Converts trajectories into reusable skills |
 | **Agent-R1** | ![GitHub stars](https://img.shields.io/github/stars/AgentR1/Agent-R1?style=flat) | Python | End-to-end agent RL training | Tool environment abstraction, process rewards |
 | **rLLM** | ![GitHub stars](https://img.shields.io/github/stars/rllm-org/rllm?style=flat) | Python | Full-stack language agent RL | AgentWorkflowEngine, multiple SOTA models |
+| **Polar** | ![GitHub stars](https://img.shields.io/github/stars/NVIDIA-NeMo/ProRL-Agent-Server?style=flat) | Python | RL on real-world agent harnesses | Harness-neutral rollout services, trainer bridges |
 | **OpenRLHF** | ![GitHub stars](https://img.shields.io/github/stars/OpenRLHF/OpenRLHF?style=flat) | Python | General RLHF infrastructure | Ray+vLLM, production-ready, comprehensive algorithms |
 | **veRL** | ![GitHub stars](https://img.shields.io/github/stars/volcengine/verl?style=flat) | Python | LLM RL training library | HybridFlow, flexible dataflows |
 | **TRL** | ![GitHub stars](https://img.shields.io/github/stars/huggingface/trl?style=flat) | Python | HF official RL library | Largest community, HF ecosystem integration |
+| **OpenEnv** | ![GitHub stars](https://img.shields.io/github/stars/huggingface/OpenEnv?style=flat) | Python | Standard agentic RL environments | Portable typed interface, local/container/remote execution |
+| **prime-rl** | ![GitHub stars](https://img.shields.io/github/stars/PrimeIntellect-ai/prime-rl?style=flat) | Python | Asynchronous RL at scale | FSDP2 + vLLM, MoE/VLM, Slurm/K8s |
+| **Verifiers** | ![GitHub stars](https://img.shields.io/github/stars/PrimeIntellect-ai/verifiers?style=flat) | Python | Agent environments and rewards | Multi-turn/tool/MCP/browser/CLI tasks |
 | **PRIME** | ![GitHub stars](https://img.shields.io/github/stars/PRIME-RL/PRIME?style=flat) | Python | Implicit process reward RL | No annotation PRM, integrated into veRL |
 | **ROLL** | ![GitHub stars](https://img.shields.io/github/stars/alibaba/ROLL?style=flat) | Python | Terminal agent RL training | Async pipeline, strict env management, chunked MDP |
 | **RAGEN** | ![GitHub stars](https://img.shields.io/github/stars/mll-lab-nu/RAGEN?style=flat) | Python | Reasoning agent RL (StarPO) | Reasoning collapse diagnostics, 10+ environments |
 | **SkyRL-Agent** | ![GitHub stars](https://img.shields.io/github/stars/NovaSky-AI/SkyRL?style=flat) | Python | Efficient multi-turn agent RL | Async dispatcher, AST-based tool, backend interoperability |
 | **Slime** | ![GitHub stars](https://img.shields.io/github/stars/THUDM/slime?style=flat) | Python | SGLang-native RL post-training | Native SGLang integration, prefix caching |
-| **AReaL** | ![GitHub stars](https://img.shields.io/github/stars/inclusionAI/AReaL?style=flat) | Python | Efficient RL with Tree Attention | DFS-based prefix tree, 8.31x throughput |
+| **AReaL** | ![GitHub stars](https://img.shields.io/github/stars/AReaL-Project/AReaL?style=flat) | Python | Asynchronous modular agent RL | Microservices, OpenClaw/Hermes agent service, DTA |
 | **RLAnything** | ![GitHub stars](https://img.shields.io/github/stars/Gen-Verse/Open-AgentRL?style=flat) | Python | Closed-loop agentic RL | Joint policy+reward+env optimization |
 | **DemyAgent** | ![GitHub stars](https://img.shields.io/github/stars/Gen-Verse/Open-AgentRL?style=flat) | Python | Deliberative agentic RL | 4B beats 32B, exploration-friendly techniques |
 | **Ray** | ![GitHub stars](https://img.shields.io/github/stars/ray-project/ray?style=flat) | Python | Distributed AI compute engine | RLlib, powers OpenRLHF and many RL frameworks |
+| **KnowAct-GUIClaw** | ![GitHub stars](https://img.shields.io/github/stars/HITsz-TMG/KnowAct?style=flat) | Python | Self-evolving GUI agent | OpenClaw/Hermes integration, evolving memory and skills |
 
 ---
 
 ## 🔑 Key Research Directions
 
-1. **From Offline RL to Online Continual Learning** — Real-time conversation as training signal (OpenClaw-RL, MetaClaw)
-2. **Agent-Training Decoupled Architecture** — Middleware design for black-box agent RL integration (Claw-R1, MiniMax Forge)
-3. **Personalized Agent Training** — Low-cost personal agent training via Binary RL + OPD (OpenClaw-RL)
-4. **Meta-Learning Scheduling** — Training during idle/sleep windows (MetaClaw's madmax mode)
-5. **Multi-Modal Agent RL** — GUI, vision, and audio rewards for multi-modal agents (rLLM VLM, Agent-R1)
-6. **Safety & Controllability** — Reward hacking prevention, constitutional RL constraints
-7. **Evaluation Standardization** — Unified Agent RL benchmarks combining online tasks + offline metrics
+1. **From Offline RL to Online Continual Learning** — Conversations and deployed interaction traces as training signals (OpenClaw-RL, MetaClaw, OpenJarvis, OpenClaw Self-learning)
+2. **Harness-Native and Black-Box Agent RL** — Training agents inside the interfaces they actually use, with minimal code changes (Dressage, OpenForgeRL, Agent Lightning, Polar, ClawGym II)
+3. **Agent-Training Decoupled Architecture** — Middleware and service designs that separate agent execution, data collection, evaluation, and training (Claw-R1, MiniMax Forge, Uni-Agent)
+4. **Personalized Agent Training** — Low-cost personal adaptation of weights, prompts, skills, and configuration (OpenClaw-RL, OpenJarvis, MetaClaw)
+5. **Skill and Policy Co-Evolution** — Joint improvement of model behavior and explicit reusable capabilities (SkillRL, MetaClaw, OpenJarvis)
+6. **Meta-Learning Scheduling** — Training during idle, sleep, or meeting windows (MetaClaw's `madmax` mode)
+7. **Multi-Modal and GUI Agent Learning** — GUI, vision, and audio rewards for agents operating beyond text (KnowAct-GUIClaw, rLLM VLM, Agent-R1)
+8. **Multi-Agent and Swarm RL** — Joint optimization of heterogeneous, interacting agents (AgentJet)
+9. **Safety & Controllability** — Reward-hacking prevention, governed skill learning, rollback, and constitutional RL constraints
+10. **Evaluation Standardization** — Unified Agent RL benchmarks combining online tasks, native harnesses, and offline metrics
+   - [ClawGym-Bench](https://github.com/ClawGym/ClawGym-Agents) — Personal-agent benchmark backed by 13.5K tasks and 24.5K trajectories, with released training and evaluation assets
    - [ClawArena](https://github.com/aiming-lab/ClawArena) — Benchmarking AI agents in evolving information environments with 64 multi-domain scenarios and multi-session context evaluation
    - [ClawBench](https://github.com/TIGER-AI-Lab/ClawBench) — Web agent benchmark in real browser environments with multi-modal recording (DOM events, HTTP requests, screenshots, MP4 video) and isolated Docker containers
    - [Claw-Eval](https://github.com/claw-eval/claw-eval) — Transparent benchmark with 300 human-verified tasks, 2,159 rubrics across 9 categories, evaluating agents on Completion, Safety, and Robustness with Pass^3 methodology
    - [EvoClaw](https://arxiv.org/abs/2603.13428) — A benchmark evaluating AI agents on continuous software evolution via Milestone DAGs reconstructed from commit logs. Tests agents' ability to sustain system integrity and limit error accumulation over long-term evolution. Finds that frontier model performance drops from >80% on isolated tasks to ≤38% in continuous settings.
-8. **KV Cache Management & Sharing** — Cross-request prefix sharing, global cache pools, and program-aware scheduling (ThunderAgent, ForgeRL, Seer)
-9. **Reasoning Collapse in Agent RL** — Diagnosing and mitigating template collapse during multi-turn agent training (RAGEN V2)
-10. **Environment Isolation & Integrity** — Preventing reward hacking through strict sandbox management and residual artifact cleanup (ROLL, ThunderAgent)
+11. **KV Cache Management & Sharing** — Cross-request prefix sharing, global cache pools, and program-aware scheduling (ThunderAgent, MiniMax Forge, AReaL, Seer)
+12. **Reasoning Collapse in Agent RL** — Diagnosing and mitigating template collapse during multi-turn agent training (RAGEN V2)
+13. **Portable Environments and Execution Integrity** — Standardizing environments while preventing reward hacking and residual-state leakage (OpenEnv, Verifiers, ROLL, ThunderAgent)
 
 ---
 
@@ -316,6 +462,16 @@ Agent orchestration and deployment frameworks (where Agentic RL models are serve
 
 ### Papers
 - [OpenClaw-RL: Train any agent simply by talking](https://arxiv.org/abs/2603.10165)
+- [Claw-R1: A Step-Level Data Middleware System for Agentic Reinforcement Learning](https://arxiv.org/abs/2606.09138)
+- [OpenJarvis: Personal AI, On Personal Devices](https://arxiv.org/abs/2605.17172)
+- [ClawGym: A Scalable Framework for Building Effective Claw Agents](https://arxiv.org/abs/2604.26904)
+- [ClawGym II: Exploring Black-Box RL on Agent Harness](https://arxiv.org/abs/2608.16798)
+- [OpenForgeRL: Train Harness-native Agents in Any Environment](https://arxiv.org/abs/2607.21557)
+- [Agent Lightning v1.0: Towards Harnessed Agentic RL](https://arxiv.org/abs/2608.17528)
+- [Polar: Agentic RL on Any Harness at Scale](https://arxiv.org/abs/2605.24220)
+- [AgentJet: A Distributed Swarm Training Framework for Agentic Reinforcement Learning](https://arxiv.org/abs/2606.04484)
+- [SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning](https://arxiv.org/abs/2602.08234)
+- [KnowAct-GUIClaw: Know Deeply, Act Perfectly, Personal GUI Assistant with Self-Evolving Memory and Skill](https://arxiv.org/abs/2607.12625)
 - [Agent-R1: Training Powerful LLM Agents with End-to-End RL](https://arxiv.org/abs/2511.14460)
 - [PRIME: Process Reinforcement through Implicit Rewards](https://arxiv.org/abs/2502.01456)
 - [EvoClaw: Evaluating AI Agents on Continuous Software Evolution](https://arxiv.org/abs/2603.13428)
